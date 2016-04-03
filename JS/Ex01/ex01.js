@@ -5,31 +5,24 @@ var o3 = Object.create(o2);
 var o4 = Object.create(o3);
 var o5 = Object.create(o4);
 
-
 var fun1 = function(){
 	return o5;
 };
-var f1Tester = function(obj){
-	var counter=0;
-	while(obj != null){
-		obj = Object.getPrototypeOf(obj);
-		counter = obj != null? counter +1 : counter;
-	}
-	return counter;
-};
-
 
 function fun2(){
 	return fun4;
 }
 var fun3= function(){
 	return fun2();
-}
-// var fun4 = function(){
-// 	return (new Function(){
-// 		k:null
-// 	});
-// };
+};
+
+var fun4 = function(){
+	var inner = function(){
+		return 'yes';
+	};
+	return inner.call({k:null});
+};
+
 var fun5 = function(a,b){
 	// return 6th arg ?
 }
