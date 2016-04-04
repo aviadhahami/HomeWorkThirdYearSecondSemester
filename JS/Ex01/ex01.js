@@ -29,8 +29,8 @@ var fun5 = function(a,b){
 };
 
 var fun6 = function(i){
-	// return ith fibbo
-}
+	return i<= 1 ? i : (fun6(i-1) + fun6(i-2));
+};
 
 var fun7 = function(){
 	return {
