@@ -56,7 +56,34 @@ var f8Tester = function (fun8, arrLength, numberToPrint) {
 
     var arr = fun8();
 
-    return isArr(arr) && checkArrLength(arr,arrLength);
+    var isArrayOfFunctions = function(arr) {
+        var flag = true;
+        arr.forEach(function(elem){
+            if (typeof elem !== 'function'){
+                flag = false;
+            }
+        });
+        return flag;
+    };
+
+    function invokeAllAndVerify(arr) {
+        var oldConsole = console.log;
+        console.log = function(arg){
+            window.lastPrinted = arg;
+            oldConsole(arg);
+        };
+        var flag = true;
+        arr.forEach(function(elem,index){
+            elem();
+            if(index !== window.lastPrinted){
+                flag = false;
+            }
+        });
+        console.log = oldConsole;
+        return flag;
+    }
+
+    return isArr(arr) && checkArrLength(arr,arrLength) && isArrayOfFunctions(arr) && invokeAllAndVerify(arr);
 };
 if(window.assert){
 
