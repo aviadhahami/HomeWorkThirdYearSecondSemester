@@ -67,25 +67,36 @@ var f8Tester = function (fun8, arrLength, numberToPrint) {
     };
 
     function invokeAllAndVerify(arr) {
-        debugger;
+
+        // Keep pointer to the original console.log func
         var oldConsole = (console.log).bind(console);
+
+        // Override console.log in order to verify what's printed
         console.log = function(arg){
             window.lastPrinted = arg;
             oldConsole(arg);
         };
+
         var flag = true;
+        // Verify each function instance contains and prints the index it was instantiated with
         arr.forEach(function(elem,index){
             elem();
             if(index !== window.lastPrinted){
                 flag = false;
             }
         });
+
+        // Return the old console in order to not fuck up the internet
         console.log = oldConsole;
         return flag;
     }
 
-    return isArr(arr) && checkArrLength(arr,arrLength) && isArrayOfFunctions(arr) && invokeAllAndVerify(arr);
+    return isArr(arr)
+        && checkArrLength(arr,arrLength)
+        && isArrayOfFunctions(arr)
+        && invokeAllAndVerify(arr);
 };
+
 if(window.assert){
 
     assert.BiggerThan(f1Tester(fun1()),4,'function 1');
@@ -96,7 +107,4 @@ if(window.assert){
     assert.Equals(f6Tester(fun6,20),6765,'function 6');
     assert.Equals(f7Tester(fun7),true,'function 7');
     assert.Equals(f8Tester(fun8,5,3),true, 'function 8');
-    // fun8(n): return an array that consists of n keys 0..[n-1].
-    // the value of each key is a function that upon calling prints the key via
-    // (console.log()). e.g. fun8(5)[3] prints 3
 }
