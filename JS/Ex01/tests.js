@@ -54,7 +54,7 @@ var f8Tester = function (fun8, arrLength, numberToPrint) {
         return arr.length === length;
     }
 
-    var arr = fun8();
+    var arr = fun8(5);
 
     var isArrayOfFunctions = function(arr) {
         var flag = true;
@@ -67,7 +67,8 @@ var f8Tester = function (fun8, arrLength, numberToPrint) {
     };
 
     function invokeAllAndVerify(arr) {
-        var oldConsole = console.log;
+        debugger;
+        var oldConsole = (console.log).bind(console);
         console.log = function(arg){
             window.lastPrinted = arg;
             oldConsole(arg);
