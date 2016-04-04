@@ -1,64 +1,34 @@
-// Created by Aviad Hahami via WebStorm
-
-
 // ******* FUNCTIONS DECLARATIONS ******* //
-var o1 = {a:1};
-var o2 = Object.create(o1);
-var o3 = Object.create(o2);
-var o4 = Object.create(o3);
-var o5 = Object.create(o4);
-
+// By Aviad Hahami
 var fun1 = function(){
-	return o5;
+	// Todo: implement this
 };
 
 function fun2(){
-	return fun4;
+	// Todo: implement this
 }
 var fun3= function(){
-	return fun2();
+	// Todo: implement this
 };
 
 var fun4 = function(){
-	var CustomObject = function(){
-		return "hello";
-	};
-	CustomObject.k = null;
-	return CustomObject;
+	// Todo: implement this
 };
 
 var fun5 = function(a,b){
-	return arguments[5];
+	// Todo: implement this
 };
 
 var fun6 = function(i){
-	return i<= 1 ? i : (fun6(i-1) + fun6(i-2));
+	// Todo: implement this
 };
 
 var fun7 = function(){
-	return {
-		name : {
-			firstName:'Aviad',
-			lastName:'Hahami'
-		},
-		age:'2',
-		gender:'m',
-		year:'1990',
-		id:'302188347',
-		phones:['0544932840'],
-		photoURL: ['linkforgoogle.com/img']
-	};
+	// Todo: implement this
 };
 
 var fun8 = function(n){
-	var customF = function(i){
-		console.log(i);
-	};
-	var arr = new Array(n);
-	for(var i=0;i<arr.length;i++){
-		arr[i] = customF.bind(null,i);
-	}
-	return arr;
+	// Todo: implement this
 };
 // ******* END DECLARATIONS ******* //
 
@@ -113,7 +83,7 @@ var fun9 = function() {
 	};
 
 	var f4Tester = function (obj) {
-		return (obj().k === null) && (typeof obj() === 'function');
+		return (obj.hasOwnProperty['k']) &&(obj().k === null) && (typeof obj() === 'function');
 	};
 	var f5Tester = function (fun5, number, number2, number3, number4, number5, number6, number7) {
 		return fun5(number, number2, number3, number4, number5, number6, number7);
@@ -126,17 +96,17 @@ var fun9 = function() {
 	var f7Tester = function (fun7) {
 		var obj = fun7();
 		return (typeof obj === 'object')
-			&& (obj.hasOwnProperty('name'))
-			&& (obj.name.hasOwnProperty('firstName'))
-			&& (obj.name.hasOwnProperty('lastName'))
-			&& (obj.hasOwnProperty('age'))
-			&& (obj.hasOwnProperty('gender'))
-			&& (obj.hasOwnProperty('year'))
-			&& (obj.hasOwnProperty('id'))
-			&& (obj.hasOwnProperty('phones'))
-			&& (isArr(obj.phones))
-			&& (obj.hasOwnProperty('photoURL'))
-			&& (isArr(obj.photoURL));
+		&& (obj.hasOwnProperty('name'))
+		&& (obj.name.hasOwnProperty('firstName'))
+		&& (obj.name.hasOwnProperty('lastName'))
+		&& (obj.hasOwnProperty('age'))
+		&& (obj.hasOwnProperty('gender'))
+		&& (obj.hasOwnProperty('year'))
+		&& (obj.hasOwnProperty('id'))
+		&& (obj.hasOwnProperty('phones'))
+		&& (isArr(obj.phones))
+		&& (obj.hasOwnProperty('photoURL'))
+		&& (isArr(obj.photoURL));
 	};
 	var f8Tester = function (fun8, arrLength, numberToPrint) {
 		function checkArrLength(arr, length) {
@@ -181,9 +151,9 @@ var fun9 = function() {
 		}
 
 		return isArr(arr)
-			&& checkArrLength(arr, arrLength)
-			&& isArrayOfFunctions(arr)
-			&& invokeAllAndVerify(arr);
+		&& checkArrLength(arr, arrLength)
+		&& isArrayOfFunctions(arr)
+		&& invokeAllAndVerify(arr);
 	};
 
 	if (window.assert) {
