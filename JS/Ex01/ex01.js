@@ -17,15 +17,16 @@ var fun3= function(){
 };
 
 var fun4 = function(){
-	var inner = function(){
-		return 'yes';
+	var CustomObject = function(){
+		return "hello";
 	};
-	return inner.call({k:null});
+	CustomObject.k = null;
+	return CustomObject;
 };
 
 var fun5 = function(a,b){
-	// return 6th arg ?
-}
+	return arguments[5];
+};
 
 var fun6 = function(i){
 	// return ith fibbo
