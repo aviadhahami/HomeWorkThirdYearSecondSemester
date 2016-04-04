@@ -67,7 +67,7 @@ if(window.assert){
     assert.Equals(f5Tester(fun5,1,2,3,4,5,6,7),6,'function 5');
     assert.Equals(f6Tester(fun6,20),6765,'function 6');
     assert.Equals(f7Tester(fun7),true,'function 7');
-    assert.Equals(f8Tester(fun8,5,3),true);
+    assert.Equals(f8Tester(fun8,5,3),true, 'function 8');
     // fun8(n): return an array that consists of n keys 0..[n-1].
     // the value of each key is a function that upon calling prints the key via
     // (console.log()). e.g. fun8(5)[3] prints 3

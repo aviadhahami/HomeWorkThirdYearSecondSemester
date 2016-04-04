@@ -48,5 +48,12 @@ var fun7 = function(){
 };
 
 var fun8 = function(n){
-
+	var customF = function(i){
+		console.log(i);
+	};
+	var arr = new Array(n);
+	for(var i=0;i<arr.length;i++){
+		arr[i] = customF.bind(null,i);
+	}
+	return arr;
 };
