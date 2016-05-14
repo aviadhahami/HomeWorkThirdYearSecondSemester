@@ -83,7 +83,7 @@ var fun9 = function() {
 	};
 
 	var f4Tester = function (obj) {
-		return (obj.hasOwnProperty['k']) &&(obj().k === null) && (typeof obj() === 'function');
+		return (obj().k === null) && (typeof obj() === 'function');
 	};
 	var f5Tester = function (fun5, number, number2, number3, number4, number5, number6, number7) {
 		return fun5(number, number2, number3, number4, number5, number6, number7);

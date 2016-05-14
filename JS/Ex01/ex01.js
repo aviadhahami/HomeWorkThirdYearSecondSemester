@@ -1,5 +1,5 @@
 // Created by Aviad Hahami via WebStorm
-
+var window = {} | window;
 
 // ******* FUNCTIONS DECLARATIONS ******* //
 var o1 = {a:1};
