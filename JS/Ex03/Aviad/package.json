@@ -2,9 +2,14 @@
   "name": "aviad",
   "version": "1.0.0",
   "description": "HW for ex03",
-  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.1.2",
+    "body-parser": "^1.1.2",
+    "errorhandler": "^1.0.1",
+    "method-override": "^1.0.0"
   },
   "author": "",
   "license": "ISC"
