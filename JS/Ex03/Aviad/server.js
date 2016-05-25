@@ -3,9 +3,9 @@ var express = require("express"),
 	bodyParser = require('body-parser'),
 	errorHandler = require('errorhandler'),
 	methodOverride = require('method-override'),
-	hostname = process.env.HOSTNAME || 'localhost',
-	port = parseInt(process.env.PORT, 10) || 4567,
-	publicDir = process.argv[2] || __dirname + '/public',
+	hostname = 'localhost',
+	port = 3000,
+	publicDir =__dirname + '/public',
 	path = require('path');
 
 app.get("/", function (req, res) {
@@ -23,5 +23,5 @@ app.use(errorHandler({
 	showStack: true
 }));
 
-console.log("Simple static server showing %s listening at http://%s:%s", publicDir, hostname, port);
+console.log("Serving from: %s\nListening at http://%s:%s", publicDir.replace(/\\/g,'/'), hostname, port);
 app.listen(port, hostname);
