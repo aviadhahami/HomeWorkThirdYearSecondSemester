@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "HW for ex03",
   "scripts": {
-    "run": "node server.js"
+    "run": "node server/server.js"
   },
   "dependencies": {
     "express": "^4.1.2",

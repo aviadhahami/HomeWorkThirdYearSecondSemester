@@ -5,12 +5,10 @@ var express = require("express"),
 	methodOverride = require('method-override'),
 	hostname = 'localhost',
 	port = 3000,
-	publicDir =__dirname + '/public',
-	path = require('path');
+	publicDir =__dirname + '/../public',
+	path = require('path'),
+	routes = require('./routes')(app);
 
-app.get("/", function (req, res) {
-	res.sendFile(path.join(publicDir, "/index.html"));
-});
 
 app.use(methodOverride());
 app.use(bodyParser.json());
