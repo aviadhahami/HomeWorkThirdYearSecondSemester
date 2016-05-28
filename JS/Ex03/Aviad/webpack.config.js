@@ -15,7 +15,7 @@ var HTMLconfig ={
 module.exports = {
 	entry : './app/index.js',
 	output : {
-		path: path.join(__dirname,'public'),
+		path: path.join(__dirname,'www'),
 		filename: "bundle.js"
 	},
 	module: {

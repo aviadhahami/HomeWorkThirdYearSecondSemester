@@ -1,8 +1,8 @@
 /**
  * Created by aviad on 5/25/2016.
  */
-path = require("path"),
-publicDir =__dirname + '/../public';
+var path = require("path"),
+publicDir =__dirname + '/../www';
 
 
 var routes = function(app){

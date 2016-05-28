@@ -5,7 +5,7 @@ var express = require("express"),
 	methodOverride = require('method-override'),
 	hostname = 'localhost',
 	port = 3000,
-	publicDir =__dirname + '/../public',
+	publicDir =__dirname + '/../www',
 	path = require('path'),
 	routes = require('./routes')(app);
 
