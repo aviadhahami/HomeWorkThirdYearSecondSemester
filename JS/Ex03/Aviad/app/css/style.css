@@ -1,0 +1,55 @@
+body{
+    background-color: rgba(255,255,255,0.9);
+}
+button a, button a:active, button a:hover, button a:visited{
+    color:white;
+    text-decoration: none;
+}
+
+
+
+::-webkit-input-placeholder {
+    color: rgba(255,255,255,0.85);
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: rgba(255,255,255,0.85);
+}
+::-moz-placeholder {  /* Firefox 19+ */
+    color: rgba(255,255,255,0.85);
+}
+:-ms-input-placeholder {
+    color: rgba(255,255,255,0.85);
+}
+
+
+
+
+.Panel{
+    margin:auto;
+    width:400px;
+    display: block;
+}
+input.calc-input{
+    color: rgba(255,255,255,0.9);
+    font-size: 2em;
+    background-color : #33cccc;
+    text-align:right;
+    border:0px solid black;
+    padding-right:30px;
+    width:100%;
+}
+
+button.calc-button {
+    width:100px;
+    background: #006363;
+    border:0px;
+    font-size: 2em;
+    padding: 10px;
+    color: #5ccccc;
+    text-decoration: none;
+    outline: 0;
+    transition: all .5s ease;
+}
+button.calc-button:hover{
+    background-color: #1d7373;
+}
