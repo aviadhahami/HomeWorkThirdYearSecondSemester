@@ -6,9 +6,7 @@ publicDir =__dirname + '/../www';
 
 
 var routes = function(app){
-	app.get("/", function (req, res) {
-		res.sendFile(path.join(publicDir, "/index.html"));
-	});
+
 };
 
 module.exports = routes;
