@@ -14,6 +14,13 @@ $(document).ready(function(){
 		loginView = $('#loginView');
 	var views = [profileView, calcView, readmeView, loginView];
 
+	// User related stuff
+	var user = null;
+
+
+
+
+	// Methods
 	var changeView = function (elem) {
 		const id = elem.target.id;
 		console.log('changing',elem.target.id);
@@ -27,7 +34,12 @@ $(document).ready(function(){
 				break;
 			case ('calculator'):
 				console.log('calc');
-				calcView.css('display','block');
+
+				if(!user){
+					loginView.css('display','block');
+				}else{
+					calcView.css('display','block');
+				}
 				break;
 			case ('login'):
 				console.log('login');
@@ -38,6 +50,13 @@ $(document).ready(function(){
 				break;
 		}
 	};
+	var login = function(e){
+		e.preventDefault();
+		var name  =$('#inputName').val();
+		var pass = $('#inputPassword').val();
+		console.log(name,pass);
+	};
+	$('#form').submit(login);
 
 
 	// Bind all links to on Click event
