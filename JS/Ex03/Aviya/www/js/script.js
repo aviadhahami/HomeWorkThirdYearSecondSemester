@@ -50,9 +50,12 @@ $(document).ready(function(){
 				break;
 		}
 	};
+	var setStorage = function (k, v) {
+		localStorage[k] = v;
+	};
 	var login = function(e){
 		e.preventDefault();
-		var name  =$('#inputName').val();
+		var name  = $('#inputName').val();
 		var pass = $('#inputPassword').val();
 		var data = {
 			username : name,
@@ -62,7 +65,9 @@ $(document).ready(function(){
 			"/login",
 			data
 		).then(function(res){
-			console.log(res)
+			console.log(res);
+			setStorage('AUTH_TKN',res.token);
+			setStorage('AUTH_UN',$('#inputName').val());
 		}, function(err){
 			console.log(err)
 		})
