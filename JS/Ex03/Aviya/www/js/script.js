@@ -56,7 +56,7 @@ $(document).ready(function(){
 		var pass = $('#inputPassword').val();
 		var data = {
 			username : name,
-			pass : pass
+			password : pass
 		};
 		$.post(
 			"/login",
