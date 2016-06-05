@@ -14,10 +14,20 @@ $(document).ready(function(){
 		loginView = $('#loginView');
 	var views = [profileView, calcView, readmeView, loginView];
 
+	// Binding storage
+	var setStorage = function (k, v) {
+		localStorage[k] = v;
+	};
+	var getStorage = function(k){
+		var res = null;
+		if(localStorage.hasOwnProperty(k)){
+			res = localStorage[k];
+		}
+		return res;
+	};
+
 	// User related stuff
-	var user = null;
-
-
+	var user = getStorage('AUTH_UN') || null;
 
 
 	// Methods
@@ -49,9 +59,6 @@ $(document).ready(function(){
 				profileView.css('display','block');
 				break;
 		}
-	};
-	var setStorage = function (k, v) {
-		localStorage[k] = v;
 	};
 	var login = function(e){
 		e.preventDefault();

@@ -45,10 +45,12 @@ function loginHandler(req,res) {
 			respObj['token'] = generateToken();
 		}else{
 			respObj['authorized'] = false;
+			res.status(401);
 		}
 	}else{
 		respObj['authorized'] = false;
-	}
+		res.status(401);
+			}
 	res.json(respObj);
 }
 app.post('/login',loginHandler);
