@@ -14,6 +14,9 @@ $(document).ready(function(){
 		loginView = $('#loginView');
 	var views = [profileView, calcView, readmeView, loginView];
 
+	// User variables
+	var isAuth = false;
+
 	// Binding storage
 	var setStorage = function (k, v) {
 		localStorage[k] = v;
@@ -26,8 +29,36 @@ $(document).ready(function(){
 		return res;
 	};
 
-	// User related stuff
-	var user = getStorage('AUTH_UN') || null;
+	// If authorized user, this sequence runs
+	var authorizedUserSequence = function () {
+		isAuth = true;
+		// Remove 'login' button
+		$('#isLoggedIn').css('display','none');
+	};
+
+	var unauthorizedUserSequence = function () {
+		isAuth = false;
+		$('#isLoggedIn').css('display','true');
+	};
+
+	(function isLoggedIn(){
+		if(!!getStorage('AUTH_UN') && !!getStorage('AUTH_TKN')){
+			// Ask server is the user token is proper
+			var dataObj = {
+				username: getStorage('AUTH_UN'),
+				token : getStorage('AUTH_TKN')
+			};
+			$.post(
+				'/confirm_tkn',
+				dataObj
+			).then(function(res){
+				authorizedUserSequence();
+			},function(err){
+				console.log(err);
+				unauthorizedUserSequence();
+			});
+		}
+	})();
 
 
 	// Methods
@@ -44,8 +75,7 @@ $(document).ready(function(){
 				break;
 			case ('calculator'):
 				console.log('calc');
-
-				if(!user){
+				if(!getStorage('AUTH_UN')){
 					loginView.css('display','block');
 				}else{
 					calcView.css('display','block');
@@ -75,9 +105,10 @@ $(document).ready(function(){
 			console.log(res);
 			setStorage('AUTH_TKN',res.token);
 			setStorage('AUTH_UN',$('#inputName').val());
+			changeView({target:{id:'calculator'}});
 		}, function(err){
 			console.log(err)
-		})
+		});
 	};
 	$('#form').submit(login);
 

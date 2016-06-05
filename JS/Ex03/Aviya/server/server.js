@@ -20,6 +20,9 @@ app.use(errorHandler({
 	showStack: true
 }));
 
+var userTokenMap = {};
+
+
 app.get("/", function (req, res) {
 	res.sendFile(path.join(publicDir, "/index.html"));
 });
@@ -31,6 +34,10 @@ var _creds = {
 var verifyCreds = function (username, password) {
 	return !!username && !!password && _creds.hasOwnProperty(username) && _creds[username] == password;
 };
+var verifyToken = function (username, token) {
+	return !!userTokenMap && userTokenMap.hasOwnProperty(username) && userTokenMap[username] == token;
+};
+
 var generateToken = function () {
 	var rand = function() {
 		return Math.random().toString(36).substr(2); // remove `0.`
@@ -42,7 +49,11 @@ function loginHandler(req,res) {
 	if(req.body && req.body.hasOwnProperty('username') && req.body.hasOwnProperty('password')){
 		if(verifyCreds(req.body.username,req.body.password)){
 			respObj['authorized'] = true;
-			respObj['token'] = generateToken();
+			var token = generateToken();
+			respObj['token'] = token;
+
+			// Update in the user-token map
+			userTokenMap[req.body.username] = token;
 		}else{
 			respObj['authorized'] = false;
 			res.status(401);
@@ -50,10 +61,25 @@ function loginHandler(req,res) {
 	}else{
 		respObj['authorized'] = false;
 		res.status(401);
-			}
+	}
 	res.json(respObj);
 }
 app.post('/login',loginHandler);
-
+function tokenVerificationHandler(req, res) {
+	var respObj = {};
+	if(req.body && req.body.hasOwnProperty('username') && req.body.hasOwnProperty('token')){
+		if(!verifyToken(req.body.username,req.body.password)){
+			respObj['authorized'] = false;
+			res.status(403);
+		}else{
+			res.status(200);
+		}
+	}else{
+		respObj['authorized'] = false;
+		res.status(403);
+	}
+	res.json(respObj);
+}
+app.post('/confirm_tkn',tokenVerificationHandler);
 console.log("Serving from: %s\nListening at http://%s:%s", publicDir.replace(/\\/g,'/'), hostname, port);
 app.listen(port, hostname);
