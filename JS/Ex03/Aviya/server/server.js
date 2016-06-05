@@ -27,7 +27,6 @@ app.get("/", function (req, res) {
 
 app.post('/login',function (req, res){
 	console.log(req.body);
-	console.log(res.body);
 	res.json({status:true});
 });
 

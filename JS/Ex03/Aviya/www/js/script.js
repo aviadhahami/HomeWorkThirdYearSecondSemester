@@ -54,7 +54,18 @@ $(document).ready(function(){
 		e.preventDefault();
 		var name  =$('#inputName').val();
 		var pass = $('#inputPassword').val();
-		console.log(name,pass);
+		var data = {
+			username : name,
+			pass : pass
+		};
+		$.post(
+			"/login",
+			data
+		).then(function(res){
+			console.log(res)
+		}, function(err){
+			console.log(err)
+		})
 	};
 	$('#form').submit(login);
 
