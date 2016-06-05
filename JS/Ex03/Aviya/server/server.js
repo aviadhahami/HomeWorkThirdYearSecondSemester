@@ -31,12 +31,18 @@ var _creds = {
 var verifyCreds = function (username, password) {
 	return !!username && !!password && _creds.hasOwnProperty(username) && _creds[username] == password;
 };
+var generateToken = function () {
+	var rand = function() {
+		return Math.random().toString(36).substr(2); // remove `0.`
+	};
+	return rand() + rand(); // to make it longer
+};
 function loginHandler(req,res) {
 	var respObj = {};
 	if(req.body && req.body.hasOwnProperty('username') && req.body.hasOwnProperty('password')){
 		if(verifyCreds(req.body.username,req.body.password)){
 			respObj['authorized'] = true;
-			respObj['token'] = '';
+			respObj['token'] = generateToken();
 		}else{
 			respObj['authorized'] = false;
 		}
