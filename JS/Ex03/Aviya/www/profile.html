@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aviya Sela</title>
+    <link rel="stylesheet" href="css/external/bootstrap.min.css">
+    <link rel="stylesheet" href="css/external/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/external/jquery.min.js"></script>
+    <script src="js/external/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Ex02</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#profile" id="profile">Profile</a></li>
+                <li><a  href="#calculator" id="calculator">Calculator</a></li>
+                <li><a  href="#readme" id="readme">Readme</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div id="readmeView">
+    <div class="container-fluid">
+        <div class="panel panel-default" style="width:50%;margin:auto;">
+            <div class="panel-heading">
+                <h1>
+                    Hardest part
+                </h1>
+            </div>
+            <div class="panel-body">
+                <p>
+                    Was doing the logical paging and design.
+                </p>
+            </div>
+        </div>
+        <br>
+        <div class="panel panel-default" style="width:50%;margin:auto;">
+            <div class="panel-heading">
+                <h1>
+                    Niceset Part
+                </h1>
+            </div>
+            <div class="panel-body">
+                <p>
+                    Seeing everything working together
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="profileView">
+    <div class="container-fluid">
+        <div class="panel panel-default" style="width:50%;margin:auto;">
+            <div class="panel-heading">
+                <h1>
+                    Aviya Sela
+                </h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        <img src="assets/img/profilePic.jpg" class="profile-pic" alt="">
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-8">
+                        <h4>
+                            A third year student for Computer Science, with a minor in Pyschology. 
+                            <br>
+                            <br>
+                            Organized HackIDC 2015 and HackIDC 2016, a fan of interior and material design, and loves CrossFit.
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="calcView">
+    <div class="container-fluid">
+        <div style="margin: auto;">
+            <div class="panel panel-default" style="width:400px;margin:auto;">
+                <div class="panel-heading">
+                    <h1>
+                        Calculator
+                    </h1>
+                </div>
+                <div class="panel-body">
+                    <form name="calc">
+                    <table border=2 style="margin: auto">
+                        <tr>
+                            <td colspan=4><input type="text" Name="display"></td>
+                        </tr>
+                        <tr>
+                            <td><input type=button value="0" OnClick="calc.display.value+='0'"></td>
+                            <td><input type=button value="1" OnClick="calc.display.value+='1'"></td>
+                            <td><input type=button value="2" OnClick="calc.display.value+='2'"></td>
+                            <td><input type=button value="+" OnClick="calc.display.value+='+'"></td>
+                        </tr>
+                        <tr>
+                            <td><input type=button value="3" OnClick="calc.display.value+='3'"></td>
+                            <td><input type=button value="4" OnClick="calc.display.value+='4'"></td>
+                            <td><input type=button value="5" OnClick="calc.display.value+='5'"></td>
+                            <td><input type=button value="-" OnClick="calc.display.value+='-'"></td>
+                        </tr>
+                        <tr>
+                            <td><input type=button value="6" OnClick="calc.display.value+='6'"></td>
+                            <td><input type=button value="7" OnClick="calc.display.value+='7'"></td>
+                            <td><input type=button value="8" OnClick="calc.display.value+='8'"></td>
+                            <td><input type=button value="x" OnClick="calc.display.value+='*'"></td>
+                        </tr>
+                        <tr>
+                            <td><input type=button value="9" OnClick="calc.display.value+='9'"></td>
+                            <td><input type=button value="C" OnClick="calc.display.value=''"></td>
+                            <td><input type=button value="=" OnClick="calc.display.value=eval(calc.display.value)"></td>
+                            <td><input type=button value="/" OnClick="calc.display.value+='/'"></td>
+                        </tr>
+                    </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
