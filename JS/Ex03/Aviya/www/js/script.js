@@ -5,12 +5,14 @@
 $(document).ready(function(){
 	var profile = $('#profile'),
 		calculator = $('#calculator'),
-		readme = $('#readme');
-	var elemLinksArr = [profile,calculator,readme];
+		readme = $('#readme'),
+		login = $('#login');
+	var elemLinksArr = [profile,calculator,readme, login];
 	var profileView = $('#profileView'),
 		calcView = $('#calcView'),
-		readmeView = $('#readmeView');
-	var views = [profileView, calcView, readmeView];
+		readmeView = $('#readmeView'),
+		loginView = $('#loginView');
+	var views = [profileView, calcView, readmeView, loginView];
 
 	var changeView = function (elem) {
 		const id = elem.target.id;
@@ -26,6 +28,10 @@ $(document).ready(function(){
 			case ('calculator'):
 				console.log('calc');
 				calcView.css('display','block');
+				break;
+			case ('login'):
+				console.log('login');
+				loginView.css('display','block');
 				break;
 			default:
 				profileView.css('display','block');
