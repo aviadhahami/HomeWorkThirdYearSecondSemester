@@ -36,8 +36,7 @@ var verifyCreds = function (username, password) {
 };
 
 var verifyToken = function (username, token) {
-	console.log(username);
-	console.log(token);
+	console.log('verifying token for: ' + username + ' \\ ' + token);
 	return !!usersDataObject && usersDataObject.hasOwnProperty(username) && usersDataObject[username]['token'] === token;
 };
 var generateToken = function () {
@@ -55,6 +54,7 @@ var getLastCalcResult = function(username){
 };
 var setLastCalcResult = function(username,calcResult){
 	usersDataObject[username]['calcResult'] = calcResult;
+	console.log(username + ' set his calc result to : ' + calcResult);
 };
 
 function loginHandler(req,res) {

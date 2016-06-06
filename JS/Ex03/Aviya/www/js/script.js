@@ -17,6 +17,10 @@ $(document).ready(function(){
 
 	// User variables
 	var isAuth = false;
+	var getUserAndToken = function(){
+		return {username : getStorage(UN),
+			token: getStorage(TOKEN)};
+	}
 
 	// Binding storage
 	var setStorage = function (k, v) {
@@ -69,12 +73,27 @@ $(document).ready(function(){
 	// Methods
 	var getLastCalcResult = function () {
 		// Ajax to get last result goes here
-		$.get(
-			'/calc/value?username='+getStorage('')
+		$.get('/calc/value?username='+getStorage(UN) +'&token=' + getStorage(TOKEN)).then(
+			function(res){
+				console.log(res);
+				calc.display.value = res.lastResult;
+			},
+			function(err){
+				console.log(err);
+				calc.display.value = 0;
+			}
 		)
 	};
 	var setLastCalcResult = function(){
 		// Ajax to set result
+		$.post(
+			'/calc/value/' + calc.display.value || 0,
+			getUserAndToken()
+		).then(function(res){
+			console.log(res);
+		},function(err){
+			console.log(err);
+		})
 	};
 	var changeView = function (elem) {
 		const id = elem.target.id;
@@ -124,7 +143,8 @@ $(document).ready(function(){
 			changeView({target:{id:'calculator'}});
 
 		}, function(err){
-			console.log(err)
+			console.log(err);
+			$('#loginErr').css('display','block');
 		});
 	};
 	$('#form').submit(login);
