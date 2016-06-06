@@ -13,6 +13,7 @@ $(document).ready(function(){
 		readmeView = $('#readmeView'),
 		loginView = $('#loginView');
 	var views = [profileView, calcView, readmeView, loginView];
+	var UN='AUTH_UN',TOKEN='AUTH_TKN';
 
 	// User variables
 	var isAuth = false;
@@ -34,7 +35,7 @@ $(document).ready(function(){
 		isAuth = true;
 		// Remove 'login' button
 		$('#login').css('display','none');
-		$('#logged-user-name').text('Welcome ' + getStorage('AUTH_UN') + '!');
+		$('#logged-user-name').text('Welcome ' + getStorage(UN) + '!');
 		$('#logged-user-name').css('display','block');
 
 	};
@@ -46,11 +47,11 @@ $(document).ready(function(){
 
 	// On init - run this
 	(function isLoggedIn(){
-		if(!!getStorage('AUTH_UN') && !!getStorage('AUTH_TKN')){
+		if(!!getStorage(UN) && !!getStorage(TOKEN)){
 			// Ask server is the user token is proper
 			var dataObj = {
-				username: getStorage('AUTH_UN'),
-				token : getStorage('AUTH_TKN')
+				username: getStorage(UN),
+				token : getStorage(TOKEN)
 			};
 			console.log(dataObj);
 			$.post(
@@ -66,6 +67,15 @@ $(document).ready(function(){
 
 
 	// Methods
+	var getLastCalcResult = function () {
+		// Ajax to get last result goes here
+		$.get(
+			'/calc/value?username='+getStorage('')
+		)
+	};
+	var setLastCalcResult = function(){
+		// Ajax to set result
+	};
 	var changeView = function (elem) {
 		const id = elem.target.id;
 		console.log('changing',elem.target.id);
@@ -83,6 +93,7 @@ $(document).ready(function(){
 					loginView.css('display','block');
 				}else{
 					calcView.css('display','block');
+					getLastCalcResult();
 				}
 				break;
 			case ('login'):
@@ -107,8 +118,8 @@ $(document).ready(function(){
 			data
 		).then(function(res){
 			console.log(res);
-			setStorage('AUTH_TKN',res.token);
-			setStorage('AUTH_UN',$('#inputName').val());
+			setStorage(TOKEN,res.token);
+			setStorage(UN,$('#inputName').val());
 			authorizedUserSequence();
 			changeView({target:{id:'calculator'}});
 
@@ -130,6 +141,9 @@ $(document).ready(function(){
 	views.map(function(view){
 		view.css('display','none');
 	});
+
+	// Bind the "=" button to onclick event
+	$('#equals').on('click',setLastCalcResult);
 
 	// Show first
 	profileView.css('display','block');

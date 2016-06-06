@@ -20,7 +20,7 @@ app.use(errorHandler({
 	showStack: true
 }));
 
-var userTokenMap = {};
+var usersDataObject = {};
 var _creds = {
 	'302188347' : 'aviad',
 	'admin' : 'admin'
@@ -38,7 +38,7 @@ var verifyCreds = function (username, password) {
 var verifyToken = function (username, token) {
 	console.log(username);
 	console.log(token);
-	return !!userTokenMap && userTokenMap.hasOwnProperty(username) && userTokenMap[username] == token;
+	return !!usersDataObject && usersDataObject.hasOwnProperty(username) && usersDataObject[username]['token'] === token;
 };
 var generateToken = function () {
 	var rand = function() {
@@ -47,7 +47,14 @@ var generateToken = function () {
 	return rand() + rand(); // to make it longer
 };
 var injectTokenToMap = function (username, token) {
-	userTokenMap[username] = token;
+	usersDataObject[username] = {};
+	usersDataObject[username]['token'] = token;
+};
+var getLastCalcResult = function(username){
+	return usersDataObject[username]['calcResult'] || 0;
+};
+var setLastCalcResult = function(username,calcResult){
+	usersDataObject[username]['calcResult'] = calcResult;
 };
 
 function loginHandler(req,res) {
@@ -87,5 +94,34 @@ function tokenVerificationHandler(req, res) {
 	res.json(respObj);
 }
 app.post('/confirm_tkn',tokenVerificationHandler);
+function calcResultSetterHandler(req,res) {
+	if(!!req.body && req.body.hasOwnProperty('username') && req.body.hasOwnProperty('token')){
+		var val = req.params.val || 0;
+		if(verifyToken(req.body.username, req.body.token)){
+			setLastCalcResult(req.body.username,val);
+		}else{
+
+			// Not authorized
+			res.status(403);
+		}
+	}else{
+
+		// Err
+		res.status(400);
+	}
+}
+app.post('/calc/value/:val',calcResultSetterHandler);
+function calcResultGetterHandler(req,res) {
+	if(!!req.query && req.query.hasOwnProperty('username') && req.query.hasOwnProperty('token')) {
+		if(verifyToken(req.query.username,req.query.token)){
+			res.status(200).json({lastResult : getLastCalcResult(req.query.username)});
+		}else{
+			res.status(403);
+		}
+	}else{
+		res.status(400);
+	}
+}
+app.get('/calc/value',calcResultGetterHandler);
 console.log("Serving from: %s\nListening at http://%s:%s", publicDir.replace(/\\/g,'/'), hostname, port);
 app.listen(port, hostname);
