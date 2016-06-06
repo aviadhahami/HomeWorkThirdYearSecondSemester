@@ -33,14 +33,18 @@ $(document).ready(function(){
 	var authorizedUserSequence = function () {
 		isAuth = true;
 		// Remove 'login' button
-		$('#isLoggedIn').css('display','none');
+		$('#login').css('display','none');
+		$('#logged-user-name').text('Welcome ' + getStorage('AUTH_UN') + '!');
+		$('#logged-user-name').css('display','block');
+
 	};
 
 	var unauthorizedUserSequence = function () {
 		isAuth = false;
-		$('#isLoggedIn').css('display','true');
+		$('#login').css('display','true');
 	};
 
+	// On init - run this
 	(function isLoggedIn(){
 		if(!!getStorage('AUTH_UN') && !!getStorage('AUTH_TKN')){
 			// Ask server is the user token is proper
@@ -55,7 +59,6 @@ $(document).ready(function(){
 			).then(function(res){
 				authorizedUserSequence();
 			},function(err){
-				console.log(err);
 				unauthorizedUserSequence();
 			});
 		}
@@ -76,7 +79,7 @@ $(document).ready(function(){
 				break;
 			case ('calculator'):
 				console.log('calc');
-				if(!getStorage('AUTH_UN')){
+				if(!isAuth){
 					loginView.css('display','block');
 				}else{
 					calcView.css('display','block');
@@ -106,7 +109,9 @@ $(document).ready(function(){
 			console.log(res);
 			setStorage('AUTH_TKN',res.token);
 			setStorage('AUTH_UN',$('#inputName').val());
+			authorizedUserSequence();
 			changeView({target:{id:'calculator'}});
+
 		}, function(err){
 			console.log(err)
 		});
