@@ -22,7 +22,7 @@ app.use(errorHandler({
 
 var usersDataObject = {};
 var _creds = {
-	'302188347' : 'aviad',
+	'302221403' : 'aviya',
 	'admin' : 'admin'
 };
 
@@ -46,7 +46,7 @@ var generateToken = function () {
 	return rand() + rand(); // to make it longer
 };
 var injectTokenToMap = function (username, token) {
-	usersDataObject[username] = {};
+	usersDataObject[username] = usersDataObject[username] || {};
 	usersDataObject[username]['token'] = token;
 };
 var getLastCalcResult = function(username){

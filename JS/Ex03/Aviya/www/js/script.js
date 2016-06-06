@@ -57,11 +57,9 @@ $(document).ready(function(){
 		// Ajax to get last result goes here
 		$.get('/calc/value?username='+getStorage(AUTH.UN) +'&token=' + getStorage(AUTH.TKN)).then(
 			function(res){
-				console.log(res);
 				calc.display.value = res.lastResult;
 			},
 			function(err){
-				console.log(err);
 				calc.display.value = 0;
 			}
 		)
@@ -72,14 +70,11 @@ $(document).ready(function(){
 			'/calc/value/' + calc.display.value || 0,
 			getUserAndToken()
 		).then(function(res){
-			console.log(res);
 		},function(err){
-			console.log(err);
 		})
 	};
 	var changeView = function (elem) {
-		const id = elem.target.id;
-		console.log('changing',elem.target.id);
+		var id = elem.target.id;
 		views.map(function(view){
 			view.css('display','none');
 		});
@@ -167,12 +162,10 @@ $(document).ready(function(){
 	(function initQuoteForProfileView(){
 		$.get('/quotes/random').then(
 			function (res) {
-				console.log(res);
 				$('#quoteContentPlaceholder').text(res.text);
 				$('#quoteAuthorPlaceholder').text(res.origin)
 			},
 			function (err) {
-				console.log(err);
 				$('#quoteContentPlaceholder').text('We had a problem fetching a quote..Try again later');
 			}
 		)
