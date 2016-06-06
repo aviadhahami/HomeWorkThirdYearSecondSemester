@@ -13,14 +13,17 @@ $(document).ready(function(){
 		readmeView = $('#readmeView'),
 		loginView = $('#loginView');
 	var views = [profileView, calcView, readmeView, loginView];
-	var UN='AUTH_UN',TOKEN='AUTH_TKN';
+	var AUTH = {
+		UN :'AUTH_UN',
+		TKN : 'AUTH_TKN'
+	}
 
 	// User variables
 	var isAuth = false;
 	var getUserAndToken = function(){
-		return {username : getStorage(UN),
-			token: getStorage(TOKEN)};
-	}
+		return {username : getStorage(AUTH.UN),
+			token: getStorage(AUTH.TKN)};
+	};
 
 	// Binding storage
 	var setStorage = function (k, v) {
@@ -39,7 +42,7 @@ $(document).ready(function(){
 		isAuth = true;
 		// Remove 'login' button
 		$('#login').css('display','none');
-		$('#logged-user-name').text('Welcome ' + getStorage(UN) + '!');
+		$('#logged-user-name').text('Welcome ' + getStorage(AUTH.UN) + '!');
 		$('#logged-user-name').css('display','block');
 
 	};
@@ -49,31 +52,10 @@ $(document).ready(function(){
 		$('#login').css('display','true');
 	};
 
-	// On init - run this
-	(function isLoggedIn(){
-		if(!!getStorage(UN) && !!getStorage(TOKEN)){
-			// Ask server is the user token is proper
-			var dataObj = {
-				username: getStorage(UN),
-				token : getStorage(TOKEN)
-			};
-			console.log(dataObj);
-			$.post(
-				'/confirm_tkn',
-				dataObj
-			).then(function(res){
-				authorizedUserSequence();
-			},function(err){
-				unauthorizedUserSequence();
-			});
-		}
-	})();
-
-
 	// Methods
 	var getLastCalcResult = function () {
 		// Ajax to get last result goes here
-		$.get('/calc/value?username='+getStorage(UN) +'&token=' + getStorage(TOKEN)).then(
+		$.get('/calc/value?username='+getStorage(AUTH.UN) +'&token=' + getStorage(AUTH.TKN)).then(
 			function(res){
 				console.log(res);
 				calc.display.value = res.lastResult;
@@ -137,8 +119,8 @@ $(document).ready(function(){
 			data
 		).then(function(res){
 			console.log(res);
-			setStorage(TOKEN,res.token);
-			setStorage(UN,$('#inputName').val());
+			setStorage(AUTH.TKN,res.token);
+			setStorage(AUTH.UN,$('#inputName').val());
 			authorizedUserSequence();
 			changeView({target:{id:'calculator'}});
 
@@ -147,7 +129,6 @@ $(document).ready(function(){
 			$('#loginErr').css('display','block');
 		});
 	};
-	$('#form').submit(login);
 
 
 	// Bind all links to on Click event
@@ -164,8 +145,28 @@ $(document).ready(function(){
 
 	// Bind the "=" button to onclick event
 	$('#equals').on('click',setLastCalcResult);
+	// Bind form submission
+	$('#form').submit(login);
 
 	// Show first
 	profileView.css('display','block');
+
+	// On init - run this
+	(function isLoggedIn(){
+		if(!!getStorage(AUTH.UN) && !!getStorage(AUTH.TKN)){
+			// Ask server is the user token is proper
+			console.log(dataObj);
+			$.post(
+				'/confirm_tkn',
+				getUserAndToken()
+			).then(function(res){
+				authorizedUserSequence();
+			},function(err){
+				unauthorizedUserSequence();
+			});
+		}
+	})();
+
+
 
 });
