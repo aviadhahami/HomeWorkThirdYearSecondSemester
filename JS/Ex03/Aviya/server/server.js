@@ -65,7 +65,7 @@ var randomizeQuote = function () {
 		{text:'Mama always said life was like a box of chocolates. You never know what you\'re gonna get.',
 			origin:'Forrest Gump'}
 	];
-	return quotes[Math.floor(Math.random()*quotes.length+1)];
+	return quotes[Math.floor(Math.random()*quotes.length)];
 };
 
 function loginHandler(req,res) {

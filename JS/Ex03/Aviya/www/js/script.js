@@ -148,14 +148,12 @@ $(document).ready(function(){
 	// Bind form submission
 	$('#form').submit(login);
 
-	// Show first
-	profileView.css('display','block');
+
 
 	// On init - run this
 	(function isLoggedIn(){
 		if(!!getStorage(AUTH.UN) && !!getStorage(AUTH.TKN)){
 			// Ask server is the user token is proper
-			console.log(dataObj);
 			$.post(
 				'/confirm_tkn',
 				getUserAndToken()
@@ -166,6 +164,22 @@ $(document).ready(function(){
 			});
 		}
 	})();
+	(function initQuoteForProfileView(){
+		$.get('/quotes/random').then(
+			function (res) {
+				console.log(res);
+				$('#quoteContentPlaceholder').text(res.text);
+				$('#quoteAuthorPlaceholder').text(res.origin)
+			},
+			function (err) {
+				console.log(err);
+				$('#quoteContentPlaceholder').text('We had a problem fetching a quote..Try again later');
+			}
+		)
+	})();
+
+	// Show first
+	profileView.css('display','block');
 
 
 
