@@ -56,6 +56,17 @@ var setLastCalcResult = function(username,calcResult){
 	usersDataObject[username]['calcResult'] = calcResult;
 	console.log(username + ' set his calc result to : ' + calcResult);
 };
+var randomizeQuote = function () {
+	var quotes = [
+		{text:'I\'d like to share a revelation that I\'ve had during my time here. It came to me when I tried to classify your species and I realized that you\'re not actually mammals. Every mammal on this planet instinctively develops a natural equilibrium with the surrounding environment but you humans do not. You move to an area and you multiply and multiply until every natural resource is consumed and the only way you can survive is to spread to another area. There is another organism on this planet that follows the same pattern. Do you know what it is? A virus. Human beings are a disease, a cancer of this planet. You\'re a plague and we are the cure. ',
+			origin:'Agent Smith, The Matrix'},
+		{text:'Carpe diem. Seize the day, boys. Make your lives extraordinary.',
+			origin:'Robin Williams, Dead Poet Society'},
+		{text:'Mama always said life was like a box of chocolates. You never know what you\'re gonna get.',
+			origin:'Forrest Gump'}
+	];
+	return quotes[Math.floor(Math.random()*quotes.length+1)];
+};
 
 function loginHandler(req,res) {
 	var respObj = {};
@@ -123,5 +134,9 @@ function calcResultGetterHandler(req,res) {
 	}
 }
 app.get('/calc/value',calcResultGetterHandler);
+function randomQuoteHandler(req,res) {
+	res.status(200).json(randomizeQuote());
+}
+app.get('/quotes/random',randomQuoteHandler);
 console.log("Serving from: %s\nListening at http://%s:%s", publicDir.replace(/\\/g,'/'), hostname, port);
 app.listen(port, hostname);
