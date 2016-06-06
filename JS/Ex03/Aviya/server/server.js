@@ -21,29 +21,35 @@ app.use(errorHandler({
 }));
 
 var userTokenMap = {};
-
-
-app.get("/", function (req, res) {
-	res.sendFile(path.join(publicDir, "/index.html"));
-});
 var _creds = {
 	'302188347' : 'aviad',
 	'admin' : 'admin'
 };
 
+
+app.get("/", function (req, res) {
+	res.sendFile(path.join(publicDir, "/index.html"));
+});
+
 var verifyCreds = function (username, password) {
 	return !!username && !!password && _creds.hasOwnProperty(username) && _creds[username] == password;
 };
+
 var verifyToken = function (username, token) {
+	console.log(username);
+	console.log(token);
 	return !!userTokenMap && userTokenMap.hasOwnProperty(username) && userTokenMap[username] == token;
 };
-
 var generateToken = function () {
 	var rand = function() {
 		return Math.random().toString(36).substr(2); // remove `0.`
 	};
 	return rand() + rand(); // to make it longer
 };
+var injectTokenToMap = function (username, token) {
+	userTokenMap[username] = token;
+};
+
 function loginHandler(req,res) {
 	var respObj = {};
 	if(req.body && req.body.hasOwnProperty('username') && req.body.hasOwnProperty('password')){
@@ -53,7 +59,7 @@ function loginHandler(req,res) {
 			respObj['token'] = token;
 
 			// Update in the user-token map
-			userTokenMap[req.body.username] = token;
+			injectTokenToMap(req.body.username,token);
 		}else{
 			respObj['authorized'] = false;
 			res.status(401);
@@ -68,7 +74,7 @@ app.post('/login',loginHandler);
 function tokenVerificationHandler(req, res) {
 	var respObj = {};
 	if(req.body && req.body.hasOwnProperty('username') && req.body.hasOwnProperty('token')){
-		if(!verifyToken(req.body.username,req.body.password)){
+		if(!verifyToken(req.body.username,req.body.token)){
 			respObj['authorized'] = false;
 			res.status(403);
 		}else{

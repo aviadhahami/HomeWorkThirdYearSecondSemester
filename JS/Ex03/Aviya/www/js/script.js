@@ -48,6 +48,7 @@ $(document).ready(function(){
 				username: getStorage('AUTH_UN'),
 				token : getStorage('AUTH_TKN')
 			};
+			console.log(dataObj);
 			$.post(
 				'/confirm_tkn',
 				dataObj
