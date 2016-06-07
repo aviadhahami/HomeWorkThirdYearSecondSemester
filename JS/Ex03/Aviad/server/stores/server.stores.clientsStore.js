@@ -16,7 +16,6 @@ let clientsStore = {
 		if(!clientsStore.clientExists(username)){
 			clientsStore.createClient(username);
 		}
-		console.log('exists',clientsStore.clientExists(username));
 		data[username]['token'] = token;
 	},
 	getToken: (username) =>{

@@ -10,7 +10,7 @@ let CalcServices = {
 		if (req.body.hasOwnProperty('username') && req.body.hasOwnProperty('token') && req.params.hasOwnProperty('val')) {
 			if(AuthServices.verifyClientToken(req.body.username,req.body.token)){
 				clientsStore.setCalcResult(req.body.username,req.params.val);
-				CalcServices.retrieveCalcData(req,res);
+				res.status(200).json({lastCalc:req.params.val});
 			}else{
 				res.status(401).json({err :'Unauthorized request'});
 			}

@@ -29,11 +29,9 @@ var AuthServices = {
 	},
 	// Token login using un and token as param
 	tokenLogin : (req,res)=>{
-		console.log('token login',req.params.token,req.body.username);
 		if(req.body.hasOwnProperty('username') && req.params.hasOwnProperty('token')){
 			if(clientsStore.clientExists(req.body.username)){
-				console.log('client exists');
-				if(verifyClientToken(req.body.username, req.params.token)){
+				if(AuthServices.verifyClientToken(req.body.username, req.params.token)){
 					res.status(200).json({auth: 'verified'});
 				}else{
 					res.status(401).json({err:'wrong creds'});
@@ -45,6 +43,8 @@ var AuthServices = {
 			res.status(400).json({err:'missing critical data'});
 		}
 	},
-	verifyClientToken:(username, token) => clientsStore.getToken(username) === token
+	verifyClientToken:(username, token) => {
+		return clientsStore.getToken(username) === token;
+	}
 };
 module.exports = AuthServices;
