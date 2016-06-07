@@ -8,9 +8,9 @@ let AuthServices = require('../auth/routes.controllers.auth');
 let CalcServices = {
 	storeCalcData: (req, res)=> {
 		if (req.body.hasOwnProperty('username') && req.body.hasOwnProperty('token') && req.params.hasOwnProperty('val')) {
-			console.log('username is ' + req.body.username + 'and tkn is ' + req.body.token);
 			if(AuthServices.verifyClientToken(req.body.username,req.body.token)){
 				clientsStore.setCalcResult(req.body.username,req.params.val);
+				CalcServices.retrieveCalcData(req,res);
 			}else{
 				res.status(401).json({err :'Unauthorized request'});
 			}
@@ -20,7 +20,6 @@ let CalcServices = {
 	},
 	retrieveCalcData: (req, res)=>{
 		if (req.query.hasOwnProperty('username')) {
-			console.log('in if and username is ' + req.query.username);
 			res.status(200).json({lastCalc:clientsStore.getCalcResult(req.query.username)});
 		}else{
 			res.status(400).json({err:'no user was specified'});
