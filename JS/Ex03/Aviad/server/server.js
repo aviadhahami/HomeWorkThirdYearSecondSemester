@@ -5,10 +5,7 @@ var express = require("express"),
 	methodOverride = require('method-override'),
 	hostname = 'localhost',
 	port = 3000,
-	publicDir =__dirname + '/../www',
-	path = require('path'),
-	routes = require('./routes');
-
+	publicDir =__dirname + '/../www';
 
 app.use(methodOverride());
 app.use(bodyParser.json());
@@ -21,15 +18,8 @@ app.use(errorHandler({
 	showStack: true
 }));
 
-app.get("/", function (req, res) {
-	res.sendFile(path.join(publicDir, "/index.html"));
-});
-
-app.post('/login',function (req, res){
-	console.log(req.body);
-	console.log(res.body);
-	res.json({status:true});
-});
+// Get routes
+require('./routes')(app);
 
 console.log("Serving from: %s\nListening at http://%s:%s", publicDir.replace(/\\/g,'/'), hostname, port);
 app.listen(port, hostname);
