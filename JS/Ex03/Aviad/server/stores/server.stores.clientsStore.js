@@ -23,7 +23,7 @@ let clientsStore = {
 		return data && data[username] ? data[username]['token'] || null : null;
 	},
 	setCalcResult : (username, calcResult)=>{
-		if(this.clientExists(username)){
+		if(clientsStore.clientExists(username)){
 			data[username]['calcResult'] = calcResult;
 		}
 	},

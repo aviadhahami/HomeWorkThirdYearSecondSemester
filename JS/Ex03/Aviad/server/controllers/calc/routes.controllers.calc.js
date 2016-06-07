@@ -7,8 +7,9 @@ let AuthServices = require('../auth/routes.controllers.auth');
 
 let CalcServices = {
 	storeCalcData: (req, res)=> {
-		if (req.body.hasOwnProperty('username') && req.params.hasOwnProperty('val')) {
-			if(AuthServices.verifyClientToken(req.body.username,req.params.val)){
+		if (req.body.hasOwnProperty('username') && req.body.hasOwnProperty('token') && req.params.hasOwnProperty('val')) {
+			console.log('username is ' + req.body.username + 'and tkn is ' + req.body.token);
+			if(AuthServices.verifyClientToken(req.body.username,req.body.token)){
 				clientsStore.setCalcResult(req.body.username,req.params.val);
 			}else{
 				res.status(401).json({err :'Unauthorized request'});
