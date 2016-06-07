@@ -8,9 +8,9 @@ const _userCreds = {
 };
 let _clientData = {};
 let verifyUserCreds = (username,password) =>{
-	return _userCreds.hasOwnProperty(username) ? _userCreds[username] == password : false;
+	return _userCreds.hasOwnProperty(username) ? _userCreds[username] === password : false;
 };
-var loginRoutesHandlers = {
+var AuthServices = {
 	login:  (req, res) => {
 		if(req.body.hasOwnProperty('username') && req.body.hasOwnProperty('password')){
 			if(verifyUserCreds(req.body.username,req.body.password)){
@@ -25,4 +25,4 @@ var loginRoutesHandlers = {
 
 	}
 };
-module.exports = loginRoutesHandlers;
+export default AuthServices;
