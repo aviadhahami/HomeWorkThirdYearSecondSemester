@@ -17,7 +17,7 @@ const routes = function(app){
 	app.post('/login/:token',AuthService.tokenLogin);
 	app.post('/calc/value/:val',CalcService.storeCalcData);
 	app.get('/calc/value',CalcService.retrieveCalcData);
-	app.get('/quotes/random)',QuotesService.retrieveRandomQuote);
+	app.get('/quotes/random',QuotesService.retrieveRandomQuote);
 };
 
 module.exports = routes;
