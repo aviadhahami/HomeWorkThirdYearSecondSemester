@@ -22,7 +22,9 @@ let clientsStore = {
 		return data[username]['token'] || null;
 	},
 	setCalcResult : (username, calcResult)=>{
-
+		if(this.clientExists(username)){
+			data[username]['calcResult'] = calcResult;
+		}
 	},
 	getCalcResult : (username)=>{
 		return data[username]['calcResult'] || 0;
