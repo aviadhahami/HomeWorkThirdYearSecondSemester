@@ -19,7 +19,7 @@ app.use(errorHandler({
 }));
 
 // Get routes
-require('./routes')(app);
+require('./routes/routes')(app);
 
 console.log("Serving from: %s\nListening at http://%s:%s", publicDir.replace(/\\/g,'/'), hostname, port);
 app.listen(port, hostname);
