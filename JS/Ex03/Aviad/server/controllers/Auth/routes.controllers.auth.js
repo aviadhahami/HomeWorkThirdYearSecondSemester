@@ -12,6 +12,7 @@ let verifyUserCreds = (username,password) =>{
 	return _userCreds.hasOwnProperty(username) ? _userCreds[username] === password : false;
 };
 var AuthServices = {
+	// Regular login using un and pass
 	login:  (req, res) => {
 		if(req.body.hasOwnProperty('username') && req.body.hasOwnProperty('password')){
 			if(verifyUserCreds(req.body.username,req.body.password)){
@@ -22,21 +23,26 @@ var AuthServices = {
 				res.status(401).json({err: 'wrong creds'});
 			}
 		}else{
-			res.status(400);
+			res.status(400).json({err:'Missing critical data'});
 		}
 
 	},
+	// Token login using un and token as param
 	tokenLogin : (req,res)=>{
+		console.log('token login',req.params.token,req.body.username);
 		if(req.body.hasOwnProperty('username') && req.params.hasOwnProperty('token')){
 			if(clientsStore.clientExists(req.body.username)){
+				console.log('client exists');
 				if(clientsStore.getToken(req.body.username) === req.params.token){
 					res.status(200).json({auth: 'verified'});
+				}else{
+					res.status(401).json({err:'wrong creds'});
 				}
 			}else{
-				res.status(401).json({err:'user doesn\'t exist'});
+				res.status(403).json({err:'user doesn\'t exist'});
 			}
 		}else{
-			res.status(400);
+			res.status(400).json({err:'missing critical data'});
 		}
 	}
 };

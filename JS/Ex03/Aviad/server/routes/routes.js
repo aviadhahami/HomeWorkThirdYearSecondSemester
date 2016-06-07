@@ -12,7 +12,7 @@ var routes = function(app){
 		res.sendFile(path.join(publicDir, "/index.html"));
 	});
 	app.post('/login',AuthServices.login);
-	app.post('/login:token',AuthServices.tokenLogin);
+	app.post('/login/:token',AuthServices.tokenLogin);
 };
 
 module.exports = routes;
