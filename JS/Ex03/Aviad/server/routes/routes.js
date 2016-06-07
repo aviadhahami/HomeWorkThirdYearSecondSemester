@@ -1,9 +1,10 @@
 /**
  * Created by aviad on 5/25/2016.
  */
+'use strict';
+let AuthServices = require('./../controllers/Auth/routes.controllers.auth');
 var path = require("path"),
 	publicDir =__dirname + '/../www';
-import AuthServices from './../controllers/Auth/routes.controllers.auth';
 
 var routes = function(app){
 

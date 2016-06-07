@@ -1,8 +1,9 @@
 /**
  * Created by aviad on 6/7/2016.
  */
-import tokenGenerator from './../../external_modules/server.external_modules.tokenGenerator';
-import clientsStore from '../../stores/server.stores.clientsStore';
+'use strict';
+let tokenGenerator = require('./../../external_modules/server.external_modules.tokenGenerator');
+let clientsStore = require('../../stores/server.stores.clientsStore');
 const _userCreds = {
 	'302188347' : 'aviad',
 	'admin': 'admin'
@@ -26,4 +27,4 @@ var AuthServices = {
 
 	}
 };
-export default AuthServices;
+module.exports = AuthServices;

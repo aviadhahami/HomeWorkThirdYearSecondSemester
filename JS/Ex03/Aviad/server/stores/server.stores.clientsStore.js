@@ -1,7 +1,7 @@
 /**
  * Created by aviad on 6/7/2016.
  */
-
+'use strict';
 let data = {};
 let clientsStore = {
 	createClient: (username)=>{
@@ -31,4 +31,4 @@ let clientsStore = {
 	}
 
 };
-export default clientsStore;
+module.exports = clientsStore;
