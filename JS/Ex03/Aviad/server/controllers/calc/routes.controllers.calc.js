@@ -1,7 +1,7 @@
 /**
  * Created by aviad on 6/7/2016.
  */
-
+'use strict';
 let clientsStore = require('../../stores/server.stores.clientsStore');
 let AuthServices = require('../auth/routes.controllers.auth');
 
@@ -18,8 +18,9 @@ let CalcServices = {
 		}
 	},
 	retrieveCalcData: (req, res)=>{
-		if (req.body.hasOwnProperty('username')) {
-			res.status(200).json({lastCalc:clientsStore.getCalcResult(req.body.username)});
+		if (req.query.hasOwnProperty('username')) {
+			console.log('in if and username is ' + req.query.username);
+			res.status(200).json({lastCalc:clientsStore.getCalcResult(req.query.username)});
 		}else{
 			res.status(400).json({err:'no user was specified'});
 		}

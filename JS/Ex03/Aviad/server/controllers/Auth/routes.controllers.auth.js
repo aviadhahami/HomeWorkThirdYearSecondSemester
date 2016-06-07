@@ -33,7 +33,7 @@ var AuthServices = {
 		if(req.body.hasOwnProperty('username') && req.params.hasOwnProperty('token')){
 			if(clientsStore.clientExists(req.body.username)){
 				console.log('client exists');
-				if(clientsStore.getToken(req.body.username) === req.params.token){
+				if(verifyClientToken(req.body.username, req.params.token)){
 					res.status(200).json({auth: 'verified'});
 				}else{
 					res.status(401).json({err:'wrong creds'});
@@ -44,6 +44,7 @@ var AuthServices = {
 		}else{
 			res.status(400).json({err:'missing critical data'});
 		}
-	}
+	},
+	verifyClientToken:(username, token) => clientsStore.getToken(username) === token
 };
 module.exports = AuthServices;

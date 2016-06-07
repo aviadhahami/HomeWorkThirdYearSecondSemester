@@ -20,7 +20,7 @@ let clientsStore = {
 		data[username]['token'] = token;
 	},
 	getToken: (username) =>{
-		return data[username]['token'] || null;
+		return data && data[username] ? data[username]['token'] || null : null;
 	},
 	setCalcResult : (username, calcResult)=>{
 		if(this.clientExists(username)){
@@ -28,7 +28,7 @@ let clientsStore = {
 		}
 	},
 	getCalcResult : (username)=>{
-		return data[username]['calcResult'] || 0;
+		return data && data[username] ? data[username]['calcResult'] || 0 : 0;
 	}
 
 };
