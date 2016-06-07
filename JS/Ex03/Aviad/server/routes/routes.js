@@ -3,7 +3,7 @@
  */
 var path = require("path"),
 	publicDir =__dirname + '/../www',
-	loginHandlers = require('././routes.controllers.login.js');
+	loginHandlers = require('./../controllers/login/routes.controllers.login');
 
 
 var routes = function(app){
