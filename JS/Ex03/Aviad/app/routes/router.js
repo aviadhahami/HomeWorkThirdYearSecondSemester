@@ -10,7 +10,7 @@ import { createHashHistory } from 'history';
 
 
 // useRouterHistory creates a composable higher-order function
-const appHistory = useRouterHistory(createHashHistory)({ queryKey: false })
+const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
 
 let AppRouter = React.createClass({

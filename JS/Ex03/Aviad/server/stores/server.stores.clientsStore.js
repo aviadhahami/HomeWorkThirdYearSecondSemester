@@ -29,6 +29,5 @@ let clientsStore = {
 	getCalcResult : (username)=>{
 		return data && data[username] ? data[username]['calcResult'] || 0 : 0;
 	}
-
 };
 module.exports = clientsStore;

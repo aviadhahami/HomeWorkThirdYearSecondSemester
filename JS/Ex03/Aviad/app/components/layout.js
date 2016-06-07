@@ -31,7 +31,7 @@ let Layout = React.createClass({
 						</LinkContainer>
 						<LinkContainer to="readme">
 							<NavItem>
-								readme
+								Readme
 							</NavItem>
 						</LinkContainer>
 					</Nav>
