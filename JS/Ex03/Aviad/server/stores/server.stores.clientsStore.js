@@ -12,10 +12,12 @@ let clientsStore = {
 	clientExists: (username)=>{
 		return data.hasOwnProperty(username);
 	},
-	setToken: (username,token)=>{
-		if(!this.clientExists(username)){
-			this.createClient(username);
+	setToken: (username,token)=> {
+		if(!clientsStore.clientExists(username)){
+			clientsStore.createClient(username);
 		}
+		console.log('exists',clientsStore.clientExists(username));
+		console.log(data);
 		data[username]['token'] = token;
 	},
 	getToken: (username) =>{

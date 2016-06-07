@@ -11,7 +11,8 @@ var routes = function(app){
 	app.get("/", function (req, res) {
 		res.sendFile(path.join(publicDir, "/index.html"));
 	});
-	app.post('/Auth',AuthServices.login);
+	app.post('/login',AuthServices.login);
+	app.post('/login:token',AuthServices.tokenLogin);
 };
 
 module.exports = routes;

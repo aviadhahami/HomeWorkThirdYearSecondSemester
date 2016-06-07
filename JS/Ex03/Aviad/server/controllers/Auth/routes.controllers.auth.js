@@ -22,9 +22,22 @@ var AuthServices = {
 				res.status(401).json({err: 'wrong creds'});
 			}
 		}else{
-			res.status(400).json({err:'bad request'});
+			res.status(400);
 		}
 
+	},
+	tokenLogin : (req,res)=>{
+		if(req.body.hasOwnProperty('username') && req.params.hasOwnProperty('token')){
+			if(clientsStore.clientExists(req.body.username)){
+				if(clientsStore.getToken(req.body.username) === req.params.token){
+					res.status(200).json({auth: 'verified'});
+				}
+			}else{
+				res.status(401).json({err:'user doesn\'t exist'});
+			}
+		}else{
+			res.status(400);
+		}
 	}
 };
 module.exports = AuthServices;
