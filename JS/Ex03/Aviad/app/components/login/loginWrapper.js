@@ -4,13 +4,6 @@
 import React from 'react';
 
 let loginWrapper = React.createClass({
-	getInitialState: ()=>{
-		return {
-			username:'',
-			token:'',
-			isAuthorized: false
-		}
-	},
 	componentDidMount: ()=>{
 		// Ajax call to verify token goes here
 	},
