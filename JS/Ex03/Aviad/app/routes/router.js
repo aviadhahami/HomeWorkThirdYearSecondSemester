@@ -16,10 +16,8 @@ const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
 let AppRouter = React.createClass({
 	mixins:[
-		connect(authStore)
+		connect(authStore,'auth')
 	],
-	getInitialState(){
-	},
 	componentWillMount(){
 		console.log('comp mounted,');
 		if (this && this.state) {
