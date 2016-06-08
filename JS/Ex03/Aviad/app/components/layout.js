@@ -8,13 +8,14 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 let Layout = React.createClass({
 	render(){
+		console.log(this.props);
 		return(
 			<div>
 				<Navbar>
 					<Navbar.Header>
 						<LinkContainer to="profile">
 							<Navbar.Brand>
-								<a href="#">My App</a>
+								<a href="#">{this.props.route.username}</a>
 							</Navbar.Brand>
 						</LinkContainer>
 					</Navbar.Header>
