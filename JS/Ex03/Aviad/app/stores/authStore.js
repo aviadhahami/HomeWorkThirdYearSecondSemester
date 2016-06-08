@@ -33,7 +33,7 @@ let authStore = createStore({
 				console.log(res);
 			}, err=>{
 				console.log(err);
-			})
+			});
 			this.setState({
 				username:'david'
 			})
