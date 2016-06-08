@@ -2,14 +2,27 @@
  * Created by aviad on 6/8/2016.
  */
 import React from 'react';
+import {connect} from 'cartiv';
+import authStore from '../../stores/authStore'
+import Api from '../../stores/Api';
 
+
+let clicked = (e)=>{
+	console.log(e);
+};
 let loginWrapper = React.createClass({
-	componentDidMount: ()=>{
+	mixins:[
+		connect(authStore)
+	],
+	componentDidMount(){
 		// Ajax call to verify token goes here
 	},
-	render:()=>{
+	render(){
 		return (
-			<h2>login warpper</h2>
+			<div>
+				<h2>login wrapper</h2>
+				<button onClick={clicked}>click</button>
+			</div>
 		)
 	}
 });
