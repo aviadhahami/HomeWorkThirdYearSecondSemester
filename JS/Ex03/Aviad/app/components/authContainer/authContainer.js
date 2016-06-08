@@ -6,13 +6,13 @@ import React from 'react';
 let AuthContainer = React.createClass({
 	getInitialState:()=>{
 		return {
-			number: 7
+			username: '',
+			token:''
 		}
 	},
 	render(){
-		let {number} = this.state;
 		return (
-			<div>{number}</div>
+			<div></div>
 		);
 	}
 });
