@@ -21,6 +21,7 @@ let AppRouter = React.createClass({
 	getInitialState(){
 	},
 	componentWillMount(){
+		console.log('comp mounted,');
 		if (this && this.state) {
 			Api.auth.onAttemptTokenLogin(this.state.username, this.state.token);
 		}
@@ -32,7 +33,7 @@ let AppRouter = React.createClass({
 				<Route path="/" component={Layout}>
 					<IndexRoute component={Profile}/>
 					<Route path="profile" component={Profile}/>
-					<Route path="calculator" component={isAuthorized? Calculator : loginWrapper}/>
+					<Route path="calculator" component={isAuthorized? Calculator : loginWrapper} state={this.state='temp'}/>
 					<Route path="readme" component={Readme}/>
 				</Route>
 			</Router>

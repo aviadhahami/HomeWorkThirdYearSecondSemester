@@ -8,7 +8,7 @@ import Api from '../../stores/Api';
 
 
 let clicked = (e)=>{
-	console.log(e);
+	Api.auth.onAttemptTokenLogin();
 };
 let loginWrapper = React.createClass({
 	mixins:[
@@ -18,10 +18,13 @@ let loginWrapper = React.createClass({
 		// Ajax call to verify token goes here
 	},
 	render(){
+		console.log(this);
+		let {username} = this.props.state;
 		return (
 			<div>
 				<h2>login wrapper</h2>
 				<button onClick={clicked}>click</button>
+				<h1>{username}</h1>
 			</div>
 		)
 	}

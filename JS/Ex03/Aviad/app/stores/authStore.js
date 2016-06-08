@@ -29,10 +29,13 @@ let authStore = createStore({
 			})
 		},
 		onAttemptTokenLogin(username,token){
-			fetch('http://localhost:3000/login/'+token,{method:'post'}).then(res=>{
+			fetch('/login/'+token,{method:'post',body:{username:username}}).then(res=>{
 				console.log(res);
 			}, err=>{
 				console.log(err);
+			})
+			this.setState({
+				username:'david'
 			})
 		}
 
