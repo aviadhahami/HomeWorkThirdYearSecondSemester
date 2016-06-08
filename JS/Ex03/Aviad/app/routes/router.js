@@ -15,26 +15,19 @@ const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
 
 let AppRouter = React.createClass({
-	getInitialState: ()=>{
-		return {
-			username:'',
-			token:'',
-			isAuthorized: false
-		}
-	},
-	componentDidMount: ()=>{
-		// Ajax call to verify token goes here
-	},
+	
 	render(){
 		let { isAuthorized } = this.state;
 		return(
 			<Router history={ appHistory }>
-				<Route path="/" component={Layout}>
-					<IndexRoute component={Profile}/>
-					<Route path="profile" component={Profile}/>
-					<Route path="calculator" component={isAuthorized? Calculator : loginWrapper}/>
-					<Route path="readme" component={Readme}/>
-				</Route>
+				<AuthContainer>
+					<Route path="/" component={Layout}>
+						<IndexRoute component={Profile}/>
+						<Route path="profile" component={Profile}/>
+						<Route path="calculator" component={isAuthorized? Calculator : loginWrapper}/>
+						<Route path="readme" component={Readme}/>
+					</Route>
+				</AuthContainer>
 			</Router>
 		)
 	}
