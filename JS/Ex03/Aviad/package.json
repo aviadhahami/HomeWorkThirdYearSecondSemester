@@ -10,9 +10,10 @@
     "dev-server": "webpack-dev-server --content-base --inline --hot"
   },
   "dependencies": {
-    "express": "^4.1.2",
     "body-parser": "^1.1.2",
+    "cartiv": "^0.2.0",
     "errorhandler": "^1.0.1",
+    "express": "^4.1.2",
     "method-override": "^1.0.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
