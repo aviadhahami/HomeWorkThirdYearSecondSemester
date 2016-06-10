@@ -29,7 +29,7 @@ var AuthServices = {
 	},
 	// Token login using un and token as param
 	tokenLogin : (req,res)=>{
-		console.log('recevied req,' + req.body);
+		console.log('recevied req,un is ' + req.body.username);
 		if(req.body.hasOwnProperty('username') && req.params.hasOwnProperty('token')){
 			if(clientsStore.clientExists(req.body.username)){
 				if(AuthServices.verifyClientToken(req.body.username, req.params.token)){

@@ -15,11 +15,10 @@ let authStore = createStore({
 	{
 		getInitialState(){
 			return{
-				auth:{
-					username:'',
-					isAuth:false,
-					token:''
-				}
+				username: '',
+				isAuth: false,
+				token: ''
+
 			}
 		},
 		onAttemptLogin(username,password){
@@ -30,15 +29,14 @@ let authStore = createStore({
 			})
 		},
 		onAttemptTokenLogin(username,token){
-			this.setState(this.state.auth.username='Error');
+			this.setState({username:'david'});
 			$.post('/login/'+token,{username:username}).then(res=>{
-				console.log('res',res);
-				console.log('store changed state', this.state);
-			},
-			err=>{
-				console.log('test');
-				console.log(err);
-			});
+					console.log('res',res);
+					console.log('store changed state', this.state);
+				},
+				err=>{
+					console.log('err',err);
+				});
 		}
 
 	});

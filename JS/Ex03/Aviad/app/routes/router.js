@@ -6,32 +6,22 @@ import Readme from '../components/readme/readme';
 import Calculator from '../components/calculator/calculator';
 import loginWrapper from '../components/login/loginWrapper';
 import { createHashHistory } from 'history';
-import {connect} from 'cartiv';
-import authStore from '../stores/authStore';
-import Api from '../stores/Api';
+import AppWrapper from '../components/appWrapper';
 
 // useRouterHistory creates a composable higher-order function
 const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
 
 let AppRouter = React.createClass({
-	mixins:[
-		connect(authStore,'auth')
-	],
-	componentWillMount(){
-		console.log('comp mounted,');
-		// Api.auth.onAttemptTokenLogin(this.state.username, this.state.token);
-	},
 	render(){
-		console.log('comp changed State',this.state);
-		let { isAuth } = this.state.auth;
 		return(
-			<Router history={ appHistory } auth={this.state.auth}>
-				<Route path="/" component={Layout} isAuth={this.state.auth.isAuth} userName={this.state.auth.username}>
+			<Router history={ appHistory }>
+				<Route path="/" component={AppWrapper}>
 					<IndexRoute component={Profile}/>
 					<Route path="profile" component={Profile}/>
-					<Route path="calculator" component={isAuth? Calculator : loginWrapper}/>
+					<Route path="calculator" component={Calculator}/>
 					<Route path="readme" component={Readme}/>
+					<Route path="login" component={loginWrapper}></Route>
 				</Route>
 			</Router>
 		)

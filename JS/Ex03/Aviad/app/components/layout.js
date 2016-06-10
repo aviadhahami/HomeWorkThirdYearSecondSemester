@@ -8,14 +8,14 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 let Layout = React.createClass({
 	render(){
-		console.log(this.props);
+		let { username } = this.props;
 		return(
 			<div>
 				<Navbar>
 					<Navbar.Header>
 						<LinkContainer to="profile">
 							<Navbar.Brand>
-								<a href="#">{this.props.route.username}</a>
+								<a href="#">ReCartiv!</a>
 							</Navbar.Brand>
 						</LinkContainer>
 					</Navbar.Header>
@@ -36,6 +36,13 @@ let Layout = React.createClass({
 							</NavItem>
 						</LinkContainer>
 					</Nav>
+					<Nav pullRight>
+						<LinkContainer to="login">
+							<NavItem>
+								Login, {this.props.username}
+							</NavItem>
+						</LinkContainer>
+					</Nav>
 				</Navbar>
 				<Grid>
 					<Row className="show-grid">
@@ -45,7 +52,7 @@ let Layout = React.createClass({
 					</Row>
 				</Grid>
 			</div>
-		)
+		);
 	}
 });
 
