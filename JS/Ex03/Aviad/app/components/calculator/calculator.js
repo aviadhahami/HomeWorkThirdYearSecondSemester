@@ -3,7 +3,8 @@ import ResultField from './resultField'
 import KeyBoard from './keyboard'
 import {withRouter} from 'react-router'
 import Api from '../../stores/Api';
-import calcStore from '../stores/calcStore';
+import {connect} from 'cartiv';
+import calcStore from '../../stores/calcStore';
 
 
 let Calculator = withRouter(React.createClass({

@@ -3,6 +3,7 @@
  */
 
 import {createStore} from 'cartiv';
+import $ from 'jquery'
 import Api from './Api';
 
 let calcStore = createStore({
@@ -15,11 +16,27 @@ let calcStore = createStore({
 				calcResult: 0
 			}
 		},
-		getLastResult(){
-
+		getLastResult(username){
+			app.get('/calc/value',CalcService.retrieveCalcData);
+			$.get('/calc/value?username='+username).then(
+				res=>{
+					this.setState({calcResult:res.lastCalc});
+				},
+				err=>{
+					console.log(err);
+				}
+			)
 		},
-		setCalcResult(value){
-
+		setCalcResult(username,token,value){
+			// app.post('/calc/value/:val',CalcService.storeCalcData);
+			$.post('/calc/value/'+value,{username:username, token:token}).then(
+				res =>{
+					console.log(res);
+				},
+				err =>{
+					console.log(err);
+				}
+			)
 		}
 	});
 
