@@ -5,13 +5,17 @@
 
 let StorageService ={
 
-	set(arrOfArrays){
-		arguments.forEach(elem=>{
-			localStorage[elem[0]] = elem[1];
+	set(){
+		console.log(arguments);
+		let arrOfArrays= [...arguments];
+		arrOfArrays.forEach(elem=>{
+			if(elem[0] && elem[1]) {
+				localStorage[elem[0]] = elem[1];
+			}
 		});
 	},
 	get(k){
-		return 	localStorage[k] || null;
+		return localStorage[k] || null;
 	}
 };
 

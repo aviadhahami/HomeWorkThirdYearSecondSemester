@@ -27,9 +27,6 @@ let loginWrapper = withRouter(React.createClass({
 		let password = this.refs.password.value;
 		let username = this.refs.username.value;
 		Api.auth.onAttemptLogin(username,password);
-
-		// Dummy call
-		Api.auth.onDummyLogin();
 	},
 	render(){
 		return (

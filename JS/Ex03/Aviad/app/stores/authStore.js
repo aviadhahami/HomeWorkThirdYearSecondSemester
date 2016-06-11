@@ -20,9 +20,9 @@ let authStore = createStore({
 		getInitialState(){
 			return{
 				auth:{
-					username: localStorage[UN] || '',
+					username: StorageService.get(UN),
 					isAuth: false,
-					token: localStorage[TKN] || ''
+					token: StorageService.get(TKN)
 
 				}
 			}
