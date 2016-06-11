@@ -5,6 +5,8 @@
 import {createStore} from 'cartiv';
 import Api from './Api';
 import $ from 'jquery'
+const UN ='AUTH_STORE_UN';
+const TKN='AUTH_STORE_TKN';
 
 let authStore = createStore({
 		api: Api,
@@ -15,10 +17,12 @@ let authStore = createStore({
 	{
 		getInitialState(){
 			return{
-				username: '',
-				isAuth: false,
-				token: ''
+				auth:{
+					username: localStorage[UN] || '',
+					isAuth: false,
+					token: localStorage[TKN] || ''
 
+				}
 			}
 		},
 		onAttemptLogin(username,password){
@@ -29,10 +33,11 @@ let authStore = createStore({
 			})
 		},
 		onAttemptTokenLogin(username,token){
-			this.setState({username:'david'});
 			$.post('/login/'+token,{username:username}).then(res=>{
 					console.log('res',res);
-					console.log('store changed state', this.state);
+					let auth = Object.assign({},this.state.auth);
+					auth.isAuth = true;
+					this.setState({auth:auth})
 				},
 				err=>{
 					console.log('err',err);

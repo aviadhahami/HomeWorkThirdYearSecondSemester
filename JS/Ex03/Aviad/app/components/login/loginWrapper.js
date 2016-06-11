@@ -10,8 +10,8 @@ let loginWrapper = React.createClass({
 		// Ajax call to verify token goes here
 	},
 	clicked(){
-		console.log('clicked');
-		Api.auth.onAttemptTokenLogin(1,2);
+		// let {username, token} = this.state.auth
+		// Api.auth.onAttemptTokenLogin(1,2);
 	},
 	render(){
 		return (
