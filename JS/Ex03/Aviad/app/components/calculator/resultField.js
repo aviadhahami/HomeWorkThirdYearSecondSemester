@@ -5,7 +5,7 @@ import React from 'react';
 
 var ResultField = React.createClass({
 	render: function(){
-		return (  <input type="text" className="calc-input" maxlength="10" value={this.props.value} readOnly/> )
+		return (  <input type="text" className="calc-input" maxLength="10" value={this.props.value} readOnly/> )
 	}
 });
 

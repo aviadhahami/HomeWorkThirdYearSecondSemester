@@ -6,7 +6,6 @@
 let StorageService ={
 
 	set(){
-		console.log(arguments);
 		let arrOfArrays= [...arguments];
 		arrOfArrays.forEach(elem=>{
 			if(elem[0] && elem[1]) {
