@@ -21,8 +21,7 @@ let authStore = createStore({
 			return{
 				auth:{
 					username: StorageService.get(UN),
-					isAuth: true,
-					// TODO: Change THIS!
+					isAuth: false,
 					token: StorageService.get(TKN)
 
 				}

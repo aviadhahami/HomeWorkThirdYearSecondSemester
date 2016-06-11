@@ -31,10 +31,10 @@ let calcStore = createStore({
 			// app.post('/calc/value/:val',CalcService.storeCalcData);
 			$.post('/calc/value/'+value,{username:username, token:token}).then(
 				res =>{
-					console.log(res);
+					// console.log(res);
 				},
 				err =>{
-					console.log(err);
+					// console.log(err);
 				}
 			)
 		}
