@@ -20,7 +20,7 @@ let quotesStore = createStore({
 		onGetQuote(){
 			$.get('/quotes/random').then(
 				res=>{
-					console.log(res);
+					// console.log(res);
 					this.setState({quote:res.quote})
 				},
 				err=>{

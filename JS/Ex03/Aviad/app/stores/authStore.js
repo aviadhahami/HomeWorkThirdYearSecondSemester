@@ -46,7 +46,7 @@ let authStore = createStore({
 		},
 		onAttemptTokenLogin(username,token){
 			$.post('/login/'+token,{username:username}).then(res=>{
-					console.log('res',res);
+					// console.log('res',res);
 					let auth = Object.assign({},this.state.auth);
 					auth.isAuth = true;
 					this.setState({auth:auth})
