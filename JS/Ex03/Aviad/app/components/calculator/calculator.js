@@ -2,11 +2,14 @@ import React from 'react';
 import ResultField from './resultField'
 import KeyBoard from './keyboard'
 import {withRouter} from 'react-router'
+import Api from '../../stores/Api';
+import calcStore from '../stores/calcStore';
+
 
 let Calculator = withRouter(React.createClass({
-	getInitialState: function(){
-		return {value: "0"};
-	},
+	mixins:[
+		connect(calcStore,'calcResult')
+	],
 	componentWillMount(){
 		let { isAuth } = this.props.auth;
 		if (!isAuth) {
