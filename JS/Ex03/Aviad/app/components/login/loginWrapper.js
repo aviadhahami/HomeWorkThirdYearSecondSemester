@@ -12,7 +12,6 @@ let loginWrapper = withRouter(React.createClass({
 		if (isAuth) {
 			this.props.router.replace('calculator');
 		}
-		console.log(isAuth);
 	},
 	componentWillMount(){
 		let { isAuth } = this.props.auth;
