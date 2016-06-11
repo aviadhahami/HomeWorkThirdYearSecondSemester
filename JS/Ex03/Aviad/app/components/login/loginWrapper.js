@@ -10,13 +10,13 @@ let loginWrapper = React.createClass({
 		// Ajax call to verify token goes here
 	},
 	clicked(){
-		// let {username, token} = this.state.auth
-		// Api.auth.onAttemptTokenLogin(1,2);
+
 	},
 	render(){
 		return (
 			<div>
-				<h2>login wrapper</h2>
+				<h2>Hello Guest, Please login</h2>
+				
 				<button onClick={this.clicked}>click</button>
 			</div>
 		)

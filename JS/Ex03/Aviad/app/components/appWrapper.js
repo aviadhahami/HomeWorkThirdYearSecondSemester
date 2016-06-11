@@ -22,7 +22,7 @@ let AppWrapper = React.createClass({
 		let {isAuth} = this.state.auth
 		let username = isAuth? this.state.auth.username : '';
 		return(
-			<Layout username={username}>
+			<Layout username={username} isAuth={isAuth}>
 				{React.cloneElement(
 					this.props.children,{
 						auth: this.state.auth
