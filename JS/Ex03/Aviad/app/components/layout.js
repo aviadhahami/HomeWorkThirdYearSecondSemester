@@ -44,7 +44,7 @@ let Layout = React.createClass({
 							</NavItem>
 						</LinkContainer> :
 						<NavItem>
-							{username}
+							Welcome, <b>{username}</b>!
 						</NavItem>}
 					</Nav>
 				</Navbar>
