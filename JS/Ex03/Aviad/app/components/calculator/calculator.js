@@ -12,14 +12,16 @@ let Calculator = withRouter(React.createClass({
 		connect(calcStore,'calcResult')
 	],
 	componentWillMount(){
-		let { isAuth, username } = this.props.auth;
+		let { isAuth}= this.props.auth;
 		if (!isAuth) {
 			this.props.router.replace('login');
 		}
 
 	},
 	componentDidMount(){
-		Api.calc.getLastResult(username);
+		let { username }= this.props.auth;
+		// console.log(Api);
+		Api.calc.onGetLastResult(username);
 	},
 	onKeyPress: function(val){
 		var theInput = this.state.value + val.toString();
@@ -40,7 +42,7 @@ let Calculator = withRouter(React.createClass({
 		}
 		let {username, token} = this.props.auth
 		let result = eval(theInput);
-		Api.calc.setCalcResult(username,token,result);
+		Api.calc.onSetCalcResult(username,token,result);
 		this.setState({value:  result });
 	},
 	render: function(){

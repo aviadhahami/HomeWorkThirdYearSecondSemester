@@ -16,8 +16,8 @@ let calcStore = createStore({
 				calcResult: 0
 			}
 		},
-		getLastResult(username){
-			app.get('/calc/value',CalcService.retrieveCalcData);
+		onGetLastResult(username){
+			// app.get('/calc/value',CalcService.retrieveCalcData);
 			$.get('/calc/value?username='+username).then(
 				res=>{
 					this.setState({calcResult:res.lastCalc});
@@ -27,7 +27,7 @@ let calcStore = createStore({
 				}
 			)
 		},
-		setCalcResult(username,token,value){
+		onSetCalcResult(username,token,value){
 			// app.post('/calc/value/:val',CalcService.storeCalcData);
 			$.post('/calc/value/'+value,{username:username, token:token}).then(
 				res =>{
