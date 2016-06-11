@@ -1,12 +1,18 @@
 import React from 'react';
 import ResultField from './resultField'
 import KeyBoard from './keyboard'
+import {withRouter} from 'react-router'
 
-let Calculator = React.createClass({
+let Calculator = withRouter(React.createClass({
 	getInitialState: function(){
 		return {value: "0"};
 	},
-
+	componentWillMount(){
+		let { isAuth } = this.props.auth;
+		if (!isAuth) {
+			this.props.router.replace('login');
+		}
+	},
 	onKeyPress: function(val){
 		var theInput = this.state.value + val.toString();
 		if(theInput.length>10){
@@ -20,14 +26,12 @@ let Calculator = React.createClass({
 	}
 	,
 	onCalculate: function(){
-		console.log('calculate')
 		var theInput = this.state.value;
 		if(theInput.length>10){
 			theInput = theInput.substring(0,10);
 		}
 		this.setState({value:  eval(theInput) });
 	},
-
 	render: function(){
 		return (
 			<div className="Panel">
@@ -36,6 +40,6 @@ let Calculator = React.createClass({
 			</div>
 		)
 	}
-});
+}));
 
 module.exports = Calculator;
