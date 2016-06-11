@@ -9,9 +9,6 @@ let quotePanel = React.createClass({
 	mixins:[
 		connect(quoteStore,'quote')
 	],
-	componentWillMount(){
-		Api.quotes.onGetQuote();
-	},
 	render(){
 		let {quote} = this.state
 		return(

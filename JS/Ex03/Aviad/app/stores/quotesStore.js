@@ -12,9 +12,10 @@ let quotesStore = createStore({
 	},
 	{
 		getInitialState(){
+			this.onGetQuote();
 			return{
 				quote:''
-			}
+			};
 		},
 		onGetQuote(){
 			$.get('/quotes/random').then(
