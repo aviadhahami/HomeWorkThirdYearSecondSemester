@@ -16,7 +16,16 @@ let quotesStore = createStore({
 				quote:''
 			}
 		},
-		getQuote(){
+		onGetQuote(){
+			$.get('/quotes/random').then(
+				res=>{
+					console.log(res);
+					this.setState({quote:res.quote})
+				},
+				err=>{
+					console.log(err);
+				}
+			)
 
 		}
 	});

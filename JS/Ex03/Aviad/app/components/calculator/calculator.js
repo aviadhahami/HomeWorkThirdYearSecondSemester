@@ -16,7 +16,6 @@ let Calculator = withRouter(React.createClass({
 		if (!isAuth) {
 			this.props.router.replace('login');
 		}
-
 	},
 	componentDidMount(){
 		let { username }= this.props.auth;
@@ -24,31 +23,31 @@ let Calculator = withRouter(React.createClass({
 		Api.calc.onGetLastResult(username);
 	},
 	onKeyPress: function(val){
-		var theInput = this.state.value + val.toString();
+		var theInput = this.state.calcResult + val.toString();
 		if(theInput.length>10){
 			theInput = theInput.substring(0,10);
 		}
 		theInput = theInput.indexOf('0') === 0 ? theInput.substring(1,theInput.length): theInput;
-		this.setState({value:theInput});
+		this.setState({calcResult:theInput});
 	},
 	onReset: function(val){
-		this.setState({value: 0});
+		this.setState({calcResult: 0});
 	}
 	,
 	onCalculate: function(){
-		var theInput = this.state.value;
+		var theInput = this.state.calcResult;
 		if(theInput.length>10){
 			theInput = theInput.substring(0,10);
 		}
 		let {username, token} = this.props.auth
 		let result = eval(theInput);
 		Api.calc.onSetCalcResult(username,token,result);
-		this.setState({value:  result });
+		this.setState({calcResult:  result });
 	},
 	render: function(){
 		return (
 			<div className="Panel">
-				<ResultField value={this.state.value} />
+				<ResultField value={this.state.calcResult} />
 				<KeyBoard onKeyPress={this.onKeyPress}  onReset={this.onReset} onCalculate={this.onCalculate} />
 			</div>
 		)

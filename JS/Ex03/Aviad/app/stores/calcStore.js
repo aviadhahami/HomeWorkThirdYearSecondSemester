@@ -20,7 +20,7 @@ let calcStore = createStore({
 			// app.get('/calc/value',CalcService.retrieveCalcData);
 			$.get('/calc/value?username='+username).then(
 				res=>{
-					this.setState({calcResult:res.lastCalc});
+					this.setState({calcResult:res.lastCalc || 0});
 				},
 				err=>{
 					console.log(err);
