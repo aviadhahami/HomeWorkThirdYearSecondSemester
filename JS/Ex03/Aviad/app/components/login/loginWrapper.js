@@ -22,15 +22,16 @@ let loginWrapper = withRouter(React.createClass({
 		let {isAuth} = nextProps.auth;
 		this.redirectIfAuth(isAuth)
 	},
-	test(e){
+	handleSubmit(e){
 		e.preventDefault();
-		console.log('e',e);
-		console.log(this.refs.password.value);
+		let password = this.refs.password.value;
+		let username = this.refs.username.value;
+		Api.auth.onAttemptLogin(username,password);
 	},
 	render(){
 		return (
 			<div className="col-md-10">
-				<form onSubmit={this.test}>
+				<form onSubmit={this.handleSubmit}>
 					<h2>Log In</h2>
 					<div className="form-group">
 						<label htmlFor="username">Username: </label>
