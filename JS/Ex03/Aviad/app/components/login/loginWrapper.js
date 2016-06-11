@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {withRouter} from 'react-router'
+import {FormControl, FormGroup, ControlLabel, Button} from 'react-bootstrap'
 import Api from '../../stores/Api';
 
 
@@ -21,15 +22,28 @@ let loginWrapper = withRouter(React.createClass({
 		let {isAuth} = nextProps.auth;
 		this.redirectIfAuth(isAuth)
 	},
-	clicked(){
-		Api.auth.onDummyLogin();
+	test(e){
+		e.preventDefault();
+		console.log('e',e);
+		console.log(this.refs.password.value);
 	},
 	render(){
 		return (
-			<div>
-				<h2>Hello Guest, Please login</h2>
-
-				<button onClick={this.clicked}>click</button>
+			<div className="col-md-10">
+				<form onSubmit={this.test}>
+					<h2>Hello Guest, Please login</h2>
+					<div className="form-group">
+						<label htmlFor="username">Username: </label>
+						<input type="text" className="form-control" name="username" ref="username" placeholder="Enter username"/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="password">Password: </label>
+						<input type="password" className="form-control" name="password" ref="password"/>
+					</div>
+					<button type="submit" value="SEND" className="btn btn-primary">
+						Login
+					</button>
+				</form>
 			</div>
 		)
 	}
