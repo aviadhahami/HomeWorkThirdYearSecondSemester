@@ -19,7 +19,7 @@ let authStore = createStore({
 			return{
 				auth:{
 					username: localStorage[UN] || '',
-					isAuth: false,
+					isAuth: true,
 					token: localStorage[TKN] || ''
 
 				}

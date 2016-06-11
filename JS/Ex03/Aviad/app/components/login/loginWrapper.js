@@ -7,8 +7,11 @@ import Api from '../../stores/Api';
 
 
 let loginWrapper = withRouter(React.createClass({
-	clicked(){
-		this.props.router.replace('calculator')
+	componentWillMount(){
+		let { isAuth } = this.props.auth;
+		if (isAuth) {
+			this.props.router.replace('calculator');
+		}
 	},
 	render(){
 		return (
