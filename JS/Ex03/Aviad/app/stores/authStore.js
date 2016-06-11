@@ -29,13 +29,15 @@ let authStore = createStore({
 			$.post('/login',{username: username, password: password}).then( response =>{
 				let auth = Object.assign({},this.state.auth);
 				auth.isAuth = true;
+				auth.username = username;
 				auth.token = response.token;
+				// set data to local storage
 				this.setState({auth:auth})
 			}, err =>{
 				let auth = Object.assign({},this.state.auth);
 				auth.isAuth = false;
 				auth.username='';
-				auth.token=''
+				auth.token='';
 				this.setState({auth:auth})
 			})
 		},
