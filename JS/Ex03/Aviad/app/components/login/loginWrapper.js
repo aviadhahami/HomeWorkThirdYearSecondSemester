@@ -7,11 +7,22 @@ import Api from '../../stores/Api';
 
 
 let loginWrapper = withRouter(React.createClass({
-	componentWillMount(){
-		let { isAuth } = this.props.auth;
+	redirectIfAuth(isAuth){
 		if (isAuth) {
 			this.props.router.replace('calculator');
 		}
+		console.log(isAuth);
+	},
+	componentWillMount(){
+		let { isAuth } = this.props.auth;
+		this.redirectIfAuth(isAuth);
+	},
+	componentWillUpdate(nextProps){
+		let {isAuth} = nextProps.auth;
+		this.redirectIfAuth(isAuth)
+	},
+	clicked(){
+		Api.auth.onDummyLogin();
 	},
 	render(){
 		return (

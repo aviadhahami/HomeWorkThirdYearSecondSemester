@@ -42,6 +42,11 @@ let authStore = createStore({
 				err=>{
 					console.log('err',err);
 				});
+		},
+		onDummyLogin(){
+			let auth = Object.assign({},this.state.auth);
+			auth.isAuth = true;
+			this.setState({auth:auth})
 		}
 
 	});
