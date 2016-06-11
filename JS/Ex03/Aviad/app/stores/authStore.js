@@ -5,6 +5,8 @@
 import {createStore} from 'cartiv';
 import Api from './Api';
 import $ from 'jquery'
+import StorageService from '../services/storageService'
+
 const UN ='AUTH_STORE_UN';
 const TKN='AUTH_STORE_TKN';
 
@@ -32,6 +34,7 @@ let authStore = createStore({
 				auth.username = username;
 				auth.token = response.token;
 				// set data to local storage
+				StorageService.set([UN,username],[TKN,response.token]);
 				this.setState({auth:auth})
 			}, err =>{
 				let auth = Object.assign({},this.state.auth);
@@ -51,11 +54,6 @@ let authStore = createStore({
 				err=>{
 					console.log('err',err);
 				});
-		},
-		onDummyLogin(){
-			let auth = Object.assign({},this.state.auth);
-			auth.isAuth = true;
-			this.setState({auth:auth})
 		}
 
 	});
