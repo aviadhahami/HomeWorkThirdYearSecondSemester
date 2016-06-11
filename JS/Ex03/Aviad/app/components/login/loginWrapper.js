@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {withRouter} from 'react-router'
-import {FormControl, FormGroup, ControlLabel, Button} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import Api from '../../stores/Api';
 
 
@@ -40,9 +40,13 @@ let loginWrapper = withRouter(React.createClass({
 						<label htmlFor="password">Password: </label>
 						<input type="password" className="form-control" name="password" ref="password"/>
 					</div>
-					<button type="submit" value="SEND" className="btn btn-primary">
+					<Button type="submit" className="btn btn-primary">
 						Login
-					</button>
+					</Button>
+					&nbsp;
+					<Button type="reset" className="">
+						Reset
+					</Button>
 				</form>
 			</div>
 		)
