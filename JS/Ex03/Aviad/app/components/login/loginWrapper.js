@@ -31,7 +31,7 @@ let loginWrapper = withRouter(React.createClass({
 		return (
 			<div className="col-md-10">
 				<form onSubmit={this.test}>
-					<h2>Hello Guest, Please login</h2>
+					<h2>Log In</h2>
 					<div className="form-group">
 						<label htmlFor="username">Username: </label>
 						<input type="text" className="form-control" name="username" ref="username" placeholder="Enter username"/>
